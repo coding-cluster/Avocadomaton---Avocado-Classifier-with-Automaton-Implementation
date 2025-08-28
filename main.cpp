@@ -81,6 +81,10 @@ public:
         else if (input == "a1") inputName = "Peso Alto";
         else if (input == "a2") inputName = "Peso Bajo";
         else if (input == "a3") inputName = "Descartes";
+        else if (input == "a2" || state == "q3")    inputName = "Peso bajo";
+        else if (input == "a1" || state == "q4")    inputName = "Peso alto";
+        else if (input == "a3" || state == "q4")    inputName = "Descartes";
+        else if (input == "a2" || state == "q5")    inputName = "Peso bajo";
         else                    inputName = "Desconocido";
         
         // { State Descriptions }
@@ -108,7 +112,11 @@ int main() {
         {{"q1", "a1"}, "q3"},   // Premium -> Peso alto
         {{"q1", "a2"}, "q4"},   // Premium -> Peso bajo
         {{"q2", "a2"}, "q4"},   // Estándar -> Peso bajo
-        {{"q2", "a3"}, "q5"}    // Estándar -> Descartes
+        {{"q2", "a3"}, "q5"},   // Estándar -> Descartes
+        {{"q3", "a2"}, "q4"},   // Peso alto -> Peso bajo
+        {{"q4", "a1"}, "q3"},   // Peso bajo -> Peso alto
+        {{"q4", "a3"}, "q5"},   // Peso bajo -> Descartes
+        {{"q5", "a2"}, "q4"}    // Descartes -> Peso bajo
     };
       
     bool exit = 0;
@@ -131,10 +139,14 @@ int main() {
                 std::string state2;
                 Automaton automaton("q0", deltaTransitions, states, alphabet);
                 
-                std::cout << "Ingrese el estado de su preferencia." << std::endl;
+                std::cout << "\nIngrese el estado de su preferencia." << std::endl;
                 std::cout << " [q0] Entrada" << std::endl;
                 std::cout << " [q1] Aguacate Premium" << std::endl;
                 std::cout << " [q2] Aguacate Estándar" << std::endl;
+                std::cout << " [q3] Peso alto" << std::endl;
+                std::cout << " [q4] Peso bajo" << std::endl;
+                std::cout << " [q5] Descartes" << std::endl;
+                std::cout << "\nEntrada: ";
                 std::getline(std::cin, state1);
                 std::cin.clear();
                 std::cin.ignore((std::numeric_limits<std::streamsize>::max)(), '\n');
@@ -145,6 +157,7 @@ int main() {
                 std::cout << " [a1] Peso Alto" << std::endl;
                 std::cout << " [a2] Peso Bajo" << std::endl;
                 std::cout << " [a3] Descartes" << std::endl;
+                std::cout << "\nEntrada: ";
                 std::getline(std::cin, state2);
                 std::cin.clear();
                 std::cin.ignore((std::numeric_limits<std::streamsize>::max)(), '\n');
@@ -180,7 +193,7 @@ void logo() {
     std::cout << " A     L     E     X     I     S"  << std::endl;
     std::cout << "\n --..  ..-   -.    ..    --.   .-" << std::endl;
     std::cout << " Z     Ú     Ñ     I     G     A" << std::endl;
-    std::cout << "\n----------------------------------" << std::endl;
+    std::cout << "\n----------------------------------\n" << std::endl;
     std::cout << " [1] Autómata de Estados" << std::endl;
     std::cout << " [2] Salir" << std::endl;
     std::cout << " Please, input your choice: ";
