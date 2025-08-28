@@ -15,3 +15,8 @@ But, not all avocados come in the same shape, size, and weight. For this exercis
     b. It will be discarded if its weight isn't considered low.
 
 Feel free to check it out!
+
+## License
+
+This project is licensed under the [GNU GPL v3 License](LICENSE).
+```
