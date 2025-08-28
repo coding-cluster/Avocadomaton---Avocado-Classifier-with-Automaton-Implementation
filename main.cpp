@@ -174,6 +174,8 @@ int main() {
                 exit = 1;
         }
     } while(exit != 1);
+    
+    clearScreen();
       
     return 0;
 }
